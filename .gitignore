@@ -1,3 +1,6 @@
 ./output_audio_file.txt
 ./audio_answer.wav
+audio_answer.wav
+./interpretacion.json
+interpretacion.json
 ./__pycache__/parseador.cpython-312.pyc
