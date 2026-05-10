@@ -24,6 +24,12 @@ def with_retry(fn, *args, max_retries=5, base_delay=2.0, **kwargs):
  
  
 def main():
+    input_rules_path = "rules.json"
+    input_questions_path = "questions1.txt"
+    tmp_output_interpreter_path = "interpretacion.json"
+    output_output_file = "output_file.txt"
+    output_audio_file = "audio_answer.wav"
+
     if not os.environ.get("OPENROUTER_API_KEY"):
         print("ERROR: OPENROUTER_API_KEY environment variable is not set.")
         print("Please set it in your terminal before running: export OPENROUTER_API_KEY='sk-or-...'")
@@ -34,26 +40,26 @@ def main():
     print("\n[Step 1] Interpreting raw text into JSON...")
     try:
         interpret_questions(
-            rules_src="rules.txt",
-            questions_src="questions1.txt",
-            output_dest="interpretacion.txt"
+            rules_src=input_rules_path,
+            questions_src=input_questions_path,
+            output_dest=tmp_output_interpreter_path
         )
-        print("✅ Saved parsed data to 'interpretacion.txt'")
+        print(f"✅ Saved parsed data to '{tmp_output_interpreter_path}'")
     except Exception as e:
         print(f"❌ Interpretation failed: {e}")
         sys.exit(1)
  
     print("\n[Step 2] Sending interpretation to OpenRouter...")
     with_retry(ask_ai,
-               input_file="interpretacion.txt",
-               output_file="output_file.txt")
+               input_file=tmp_output_interpreter_path,
+               output_file=output_output_file)
  
     time.sleep(1.5)
  
     print("\n[Step 3] Back-translating AI's response to custom language...")
     with_retry(back_translate,
-               response_file="output_file.txt",
-               rules_file="rules.txt",
+               response_file=output_output_file,
+               rules_file=input_rules_path,
                output_file="interpretationAI.txt")
  
     time.sleep(1.5)
@@ -61,7 +67,7 @@ def main():
     print("\n[Step 4] Converting the custom language response to Audio (TTS)...")
     audio_path = with_retry(text_to_audio,
                             input_file="interpretationAI.txt",
-                            output_file="audio_answer.wav")
+                            output_file=output_audio_file)
  
     if audio_path:
         print(f"\n🎉 Pipeline Finished Successfully! You can listen to: {audio_path}")

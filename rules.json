@@ -1,0 +1,27 @@
+[
+  {
+    "id": "WEATHER_CITY",
+    "pattern": "^Zephyr! What skies over (.*)\\?$",
+    "intent": "Asks about current weather in a city"
+  },
+  {
+    "id": "WEATHER_TOMORROW",
+    "pattern": "^MorrowZephyr (.*)\\?$",
+    "intent": "Asks about tomorrow’s weather in a city"
+  },
+  {
+    "id": "WEATHER_WEEK",
+    "pattern": "^Aeromancer, reveal the week for (.*)\\!$",
+    "intent": "Requests a 7‑day forecast"
+  },
+  {
+    "id": "WIND_SPEED",
+    "pattern": "^Gust how fast in (.*)\\?$",
+    "intent": "Asks wind speed in a location"
+  },
+  {
+    "id": "UV_INDEX",
+    "pattern": "^Sunscorch strength in (.*)\\?$",
+    "intent": "Asks UV index for a place"
+  }
+]
