@@ -183,5 +183,5 @@ def interpret_questions(rules_src: Union[str, io.IOBase], questions_src: Union[s
 
 # 1. Processing via File Paths
 # Reads rules.txt and questions.txt, writes JSON to output.json, and returns the path string.
-saved_path = interpret_questions("reglaQ.txt", "preQ.txt", "interpretacion.txt")
+saved_path = interpret_questions("rules.txt", "questions1.txt", "interpretacion.txt")
 print(f"Saved interpretation to: {saved_path}")

@@ -34,8 +34,8 @@ def main():
     print("\n[Step 1] Interpreting raw text into JSON...")
     try:
         interpret_questions(
-            rules_src="reglaQ.txt",
-            questions_src="preQ.txt",
+            rules_src="rules.txt",
+            questions_src="questions1.txt",
             output_dest="interpretacion.txt"
         )
         print("✅ Saved parsed data to 'interpretacion.txt'")
