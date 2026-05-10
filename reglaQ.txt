@@ -1,0 +1,3 @@
+Name: quechuaV
+Rule: SALUDO | ^Imaynalla (.*)\?$ | como estas?
+Rule: ADIOS | wag dia kama (.*)\?$ | hasta otro dia

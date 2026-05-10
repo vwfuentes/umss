@@ -1,0 +1,10 @@
+[
+    {
+        "question": "Zephyr! What skies over Los Angeles?",
+        "rule_id": "WEATHER_CITY",
+        "intent": "Asks about current weather in a city",
+        "extracted_groups": [
+            "Los Angeles"
+        ]
+    }
+]

@@ -1,0 +1,3 @@
+Name: SmartHomeSystem
+Rule: LIGHT_ON | ^Turn on the (.*) light$ | User wants to turn on a light
+Rule: TEMP_SET | ^Set temp to (\d+)$ | User wants to adjust temperature

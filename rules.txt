@@ -1,0 +1,6 @@
+Name: ZephyrTongue
+Rule: WEATHER_CITY | ^Zephyr! What skies over (.*)\?$ | Asks about current weather in a city
+Rule: WEATHER_TOMORROW | ^MorrowZephyr (.*)\?$ | Asks about tomorrow’s weather in a city
+Rule: WEATHER_WEEK | ^Aeromancer, reveal the week for (.*)\!$ | Requests a 7‑day forecast
+Rule: WIND_SPEED | ^Gust how fast in (.*)\?$ | Asks wind speed in a location
+Rule: UV_INDEX | ^Sunscorch strength in (.*)\?$ | Asks UV index for a place
