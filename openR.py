@@ -63,16 +63,29 @@ def back_translate(response_file: str, rules_file: str, output_file: str, api_ke
  
     url = "https://openrouter.ai/api/v1/chat/completions"
  
-    prompt = (
-        #f"I want to translate this ai_text.txt{ai_text} with this rules.txt{grammar_rules} to interpretationAI.txt(all the files are in the same directory)"
-        f"Accord to this english text {ai_text}, if this english has 'Sorry, could you provide more info?, answer:'Sorry, could you provide more info?' if not translate it with grammar rules'.\n"
-        f"Here are the grammar rules for a custom language, analize it:\n{grammar_rules}\n\n"
-        f"Return ONLY the translated text, with no additional explanations.\n"
+    # STRICT PROMPTING:
+    system_prompt = (
+        "You are an expert translator for a custom language. Your job is to translate English "
+        "text into this custom language using the provided grammar rules. "
+        "Return ONLY the translated text, with absolutely no additional text, quotation marks, or explanations."
     )
+
+    user_prompt = (
+    f"English text to translate: '{ai_text}'\n\n"
+    f"Instructions:\n"
+    "1. Use the grammar rules provided below to translate the English text.\n"
+    "2. CRITICAL: If the English text says 'Sorry, could you provide more info?', "
+    "you MUST ONLY use the 'UNKNOWN_INFO' DO NOT add anything more just the content of 'UNKNOWN_INFO'" \
+    "if YOU DON'T HAVE ANY INFORMATION DO NOT answer only with UNKNOWN_INFO'\n"
+    f"Grammar Rules:\n{grammar_rules}"
+)
  
     payload = {
         "model": "openai/gpt-4o-mini",
-        "messages": [{"role": "user", "content": prompt}]
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
     }
  
     data = json.dumps(payload).encode('utf-8')

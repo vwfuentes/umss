@@ -27,7 +27,7 @@ def main():
     input_rules_path = "rules.json"
     input_questions_path = "questions1.txt"
     tmp_output_interpreter_path = "interpretacion.json"
-    output_output_file = "output_file.txt"
+    output_text_file = "output_file.txt"
     output_audio_file = "audio_answer.wav"
 
     if not os.environ.get("OPENROUTER_API_KEY"):
@@ -52,13 +52,13 @@ def main():
     print("\n[Step 2] Sending interpretation to OpenRouter...")
     with_retry(ask_ai,
                input_file=tmp_output_interpreter_path,
-               output_file=output_output_file)
+               output_file=output_text_file)
  
     time.sleep(1.5)
  
     print("\n[Step 3] Back-translating AI's response to custom language...")
     with_retry(back_translate,
-               response_file=output_output_file,
+               response_file=output_text_file,
                rules_file=input_rules_path,
                output_file="interpretationAI.txt")
  

@@ -23,5 +23,10 @@
     "id": "UV_INDEX",
     "pattern": "^Sunscorch strength in (.*)\\?$",
     "intent": "Asks UV index for a place"
+  },
+  {
+    "id": "UNKNOWN_INFO",
+    "pattern": "^brrr fifa (.*)\\.$",
+    "intent": "Indicates the AI does not have enough information"
   }
 ]
