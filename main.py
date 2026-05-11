@@ -5,7 +5,7 @@ import random
  
 from parseador import interpret_questions
 from openR import ask_ai, back_translate
-from errorTTS import text_to_audio
+from tts import text_to_audio
  
  
 def with_retry(fn, *args, max_retries=5, base_delay=2.0, **kwargs):
